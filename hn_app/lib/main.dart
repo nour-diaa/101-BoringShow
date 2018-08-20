@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'src/article.dart';
 
 void main() => runApp(new MyApp());
 
@@ -23,6 +24,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  // TBS: Import articles from static data (fixtures)
+  List<Article> _articles = articles;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -32,15 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: new Center(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              'Hello World!',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+          children: _articles.map((article) => new Text(article.text)).toList()
         ),
       ),
     );

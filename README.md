@@ -16,5 +16,12 @@ As a bonus project, I will use insights from this replication effort to build a 
 
 2. Opened an iOS Simulator for testing. ```open -a Simulator```. Verified that scaffolded app worked.
 
-3. Cleaned up boilerplate to reduce to basic screen (with Scaffold, AppBar and center text. No FAB or counter). _Checked in_
+3. Cleaned up boilerplate to reduce to basic screen (with Scaffold, AppBar and center text. No FAB or counter). _CheckIn 1_
+
+4. Try out hot stateful reload.
+
+5. Create Data object (article.dart) and provide some fixtures (mock data) for initial testing.
+
+6. Update Scaffold body with List of Text widgets mapped from fixtures data. _CheckIn 2_
+
 
