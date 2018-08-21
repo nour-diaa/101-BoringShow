@@ -38,3 +38,12 @@ As a bonus project, I will use insights from this replication effort to build a 
 
 13. Added the _handleRefresh()_ method to do the required refresh processing. First use of _setState_ here to highlight how reactive view updates happen. Effectively any code that changes internal state of a **State** object must be wrapped in a function passed to the _setState_ method. This function is then called immediately (synchronously) and when complete, the framework schedules a "build" for the State object, forcing repaint of widgets that are bound to that state. / _CheckIn 5_
 
+### App Screenshots (Ep 1)
+
+![Main App UI](images/ep1-screen.png)
+
+![Website Launch for Flag](images/ep1-launch.png)
+
+
+
+## Episode 2: Testing, JSON serialization & immutables

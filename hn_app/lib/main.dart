@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(fontSize: 12.0),
         ),
         new IconButton(
-            icon: new Icon(Icons.launch),
+            icon: new Icon(Icons.image),
             onPressed: () async {
               // defult inkwell animation exists
               print("Tapping item: ${country.name}");
