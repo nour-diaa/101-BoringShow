@@ -86,7 +86,7 @@ final countries = [
     region: "Americas",
     subregion: "Northern America",
     flag: "https://restcountries.eu/data/usa.svg",
-    area: 28748.0,
+    area: 9629091.0,
     population: 323947000,
     demonym: "American",
     latlong: [38.0,-97.0],

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'src/country.dart';
@@ -34,36 +36,69 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: new ListView(
-        children: _countries.map(_buildItem).toList(),
+      body: RefreshIndicator(
+        child: new ListView(
+          children: _countries.map(_buildItem).toList(),
+        ),
+        onRefresh: _handleRefresh,
       ),
     );
   }
 
-  Widget _buildItem(Country a) {
+  Future<Null> _handleRefresh() async {
+    print("Mockup Data Change to simulate a Refresh: note setState");
+    setState( (){
+      print("Removing country data for: ${_countries[0].name}");
+      _countries.removeAt(0);
+    });
+
+    print("Handling Refresh: 3 second delay!");
+    await new Future.delayed(new Duration(seconds: 3));
+  }
+
+  Widget _buildBottomRow(Country country) {
+    return new Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        new Text(
+          "Flag: ",
+          style: TextStyle(fontSize: 12.0),
+        ),
+        new IconButton(
+            icon: new Icon(Icons.launch),
+            onPressed: () async {
+              // defult inkwell animation exists
+              print("Tapping item: ${country.name}");
+              if (await canLaunch(country.flag)) {
+                await launch(country.flag,
+                    forceSafariVC: false, forceWebView: false);
+              } else {
+                throw 'Could not launch URL: ${country.flag}';
+              }
+            })
+      ],
+    );
+  }
+
+  Widget _buildItem(Country item) {
     return new Padding(
       padding: const EdgeInsets.all(8.0),
-      child: new ListTile(
+      child: new ExpansionTile(
         title: new Text(
-          "${a.name} is a country in the ${a.subregion} of ${a.region}. The ${a.demonym} people speak the ${a.languages[0]} language. The national currency is the ${a.currency}.",
-          style: new TextStyle(fontSize: 24.0),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: new Text(
-            "Population: ${a.population} / Area: ${a.area}",
-            style: new TextStyle(color: Colors.purple),
+          "${item.name}, ${item.region} / ${item.subregion} subregion",
+          style: new TextStyle(
+            fontSize: 22.0,
+            color: Colors.blueGrey,
           ),
         ),
-        onTap: () async {
-          // defult inkwell animation exists
-          print("Tapping item: ${a.name}");
-          if (await canLaunch(a.flag)) {
-            await launch(a.flag, forceSafariVC: false, forceWebView: false);
-          } else {
-            throw 'Could not launch URL: ${a.flag}';
-          }
-        },
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: new Text(
+                "The population of ${item.population} is distributed over a ${item.area} sq km area. The national currency is the ${item.currency}. Official language(s): ${item.languages}."),
+          ),
+          _buildBottomRow(item),
+        ],
       ),
     );
   }

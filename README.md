@@ -32,3 +32,9 @@ As a bonus project, I will use insights from this replication effort to build a 
 
 10. Learnt about await/async for long-running ops (e.g., url fetching). Updated onTap handler to use url_launcher "launch" which opens given URL in the browser (mobile Safari on iOS, default browser on Android) / _CheckIn 4_
 
+11. Refactored to use ExpansionTile view instead of ListTile view, with additional properties moved into the expansion (slide-out) view.
+
+12. Added support for [RefreshIndicator](https://docs.flutter.io/flutter/material/RefreshIndicator-class.html) which supports _swipe to refresh_ behavior out of the box. This only works with vertical scroll views (e.g., ListView) and automatically shows the right indicator (progress spinner) and then calls _onRefresh()_ (to do the actual data refresh) which is expected to return a Future. The indicator uses this returned Future to determine when the refresh action is complete; at which point indicator disappears automagically.
+
+13. Added the _handleRefresh()_ method to do the required refresh processing. First use of _setState_ here to highlight how reactive view updates happen. Effectively any code that changes internal state of a **State** object must be wrapped in a function passed to the _setState_ method. This function is then called immediately (synchronously) and when complete, the framework schedules a "build" for the State object, forcing repaint of widgets that are bound to that state. / _CheckIn 5_
+
