@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'src/country.dart';
 
 void main() => runApp(new MyApp());
@@ -54,6 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
             style: new TextStyle(color: Colors.purple),
           ),
         ),
+        onTap: () async {
+          // defult inkwell animation exists
+          print("Tapping item: ${a.name}");
+          if (await canLaunch(a.flag)) {
+            await launch(a.flag, forceSafariVC: false, forceWebView: false);
+          } else {
+            throw 'Could not launch URL: ${a.flag}';
+          }
+        },
       ),
     );
   }

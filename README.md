@@ -22,8 +22,13 @@ As a bonus project, I will use insights from this replication effort to build a 
 
 5. Create Data object (article.dart) and provide some fixtures (mock data) for initial testing.
 
-6. Update Scaffold body with List of Text widgets mapped from fixtures data. / _CheckIn 2_
+6. Update Scaffold body with List of Text widgets mapped from fixtures data. Using ListTile widget. / _CheckIn 2_
 
-7. Decided to refactor to use my own data (countries) as use case instead of news. Helps ensure I learn/apply ideas deliberately vs. blind copy / _CheckIn 3_
+7. Refactored to use my own data (countries) as use case instead of news. Helps ensure I learn/apply ideas deliberately vs. blind copy / _CheckIn 3_
 
+8. Added package dependency(url_launcher) in pubspec.yaml. Saved to trigger package get/install. Imported package in main.dart, ready to use.
+
+9. Added "onTap" handler to ListTile view to support actions when item in list is tapped.
+
+10. Learnt about await/async for long-running ops (e.g., url fetching). Updated onTap handler to use url_launcher "launch" which opens given URL in the browser (mobile Safari on iOS, default browser on Android) / _CheckIn 4_
 
